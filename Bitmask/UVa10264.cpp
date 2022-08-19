@@ -1,8 +1,6 @@
-#include "stdc++.h"
+#include "../stdc++.h"
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +38,47 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+int n;
+array<short, (1 << 15)> masses; short mass; int sum; //extra space
+array<int, (1 << 15)> allsum; int res;
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
+    while (scanf("%d", &n) != EOF)
+    {
+        masses.fill(0); allsum.fill(0); res = 0;
+        int noC = 1 << n;
+        for (int i = 0; i < noC; i++) 
+        {
+            scanf("%hd", &mass);
+            masses[i] = mass;
+        }
+        
+        for (int i = 0; i < noC; i++)
+        {
+            sum = 0;
+            for (int j = 0; j < n; j++)
+            {
+                short nbindex = i ^ (1 << j);
+                sum += masses[nbindex];
+            }
+            allsum[i] = sum;
+        }
+
+        
+        for (int i = 0; i < noC; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                short nbindex = i ^ (1 << j);
+                int tsum = allsum[i] + allsum[nbindex];
+                if (tsum > res) res = tsum;
+            }
+        }
+
+        printf("%d\n", res);
+    }
 }

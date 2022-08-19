@@ -4,12 +4,15 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe build active file",
-			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+			"command": "clang++",
 			"args": [
+				"-std=c++17",
 				"-fdiagnostics-color=always",
 				"-g",
 				"-Wall",
-				"${workspaceFolder}\\*.cpp",
+				"-I/opt/homebrew/include",
+				"-L/opt/homebrew/lib",
+				"${workspaceFolder}/*.cpp",
 				"-o",
 				"main"
 			],
@@ -19,8 +22,10 @@
 			"problemMatcher": [
 				"$gcc"
 			],
-			"group": "build",
-			"detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

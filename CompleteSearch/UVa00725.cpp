@@ -1,8 +1,9 @@
-#include "stdc++.h"
+#include "../stdc++.h"
+#include <cstdio>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +41,44 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+int abcde, fghij, N, ct = 1;
+bool yes = false;
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
+    while (cin >> N, N != 0)
+    {
+        if (ct > 1) cout << "\n";
+        ct++;
+        yes = false;
+        for (fghij = 1234; fghij <= 98765 / N; fghij++)
+        {
+            abcde = fghij * N;
+            int used = (fghij < 10000);
+            int tmp = fghij;
+            while (tmp != 0)
+            {
+                used |= (1 << (tmp % 10));
+                tmp /= 10;
+            }
+            tmp = abcde;
+            while (tmp != 0)
+            {
+                used |= (1 << (tmp % 10));
+                tmp /= 10;
+            }
+            if (used == (1 << 10) - 1)
+            {
+                cout << abcde << " / ";
+                if (fghij < 10000) cout << "0";
+                cout << fghij << " = " << N << "\n";
+                yes = true;
+            }
+        }
+        if (!yes)
+            cout << "There are no solutions for " << N << ".\n"; 
+    }
 }

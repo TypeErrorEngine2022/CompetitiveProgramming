@@ -1,8 +1,6 @@
-#include "stdc++.h"
+#include "../stdc++.h"
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -16,11 +14,11 @@ typedef std::map<std::string, int> msi;
 /*#define REP(i, a, a) 
     for (int i = int(a), i <= int(b), i++) // a to b, and variable i is local!
 #define TRvi(c, it)
-    for (vi::iterator it = (c).begin(); it != (c).end(); it++)
+    for (vi::iterator it = (c).begin(); it != (c).e(); it++)
 #define TRvii(c, it)
-    for (vii::iterator it = (c).begin(); it != (c).end(); it++)
+    for (vii::iterator it = (c).begin(); it != (c).e(); it++)
 #define TRmsi(c, it)
-    for (msi::iterator it = (c).begin(); it != (c).end(); it++)*/
+    for (msi::iterator it = (c).begin(); it != (c).e(); it++)*/
 
 
 #define INF 1000000000 // 1 billion
@@ -40,8 +38,46 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+string line; istringstream iss;
+list<char> ls, tmp;
+bool home = false, e = true;
+int ct = 1;
 
 int main()
 {
+    while (getline(cin, line))
+    {
+        if (line.empty()) break;
 
+        if (ct > 1) cout << '\n';
+        ct++;
+
+        ls.clear(); tmp.clear();
+
+        for (int i = 0; i < line.size(); i++)
+        {
+            if (line[i] == '[')
+            {
+                home = true; e = false;
+                continue;
+            }
+            else if (line[i] == ']')
+            {
+                home = false; e = true;
+                ls.splice(ls.begin(), tmp);
+                continue;
+            }
+
+            if (home)
+            {
+                tmp.push_back(line[i]);
+            }
+            else if (e) ls.push_back(line[i]);
+        }
+
+        for (auto it = ls.begin(); it != ls.end(); it++)
+        {
+            cout << *it;
+        }
+    }
 }

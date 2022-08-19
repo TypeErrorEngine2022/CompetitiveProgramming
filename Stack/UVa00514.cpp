@@ -1,8 +1,6 @@
-#include "stdc++.h"
+#include "../stdc++.h"
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +38,28 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+int n, ct = 1, ct2 = 1;
 
 int main()
 {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
+    int T, tmp;
+    while (cin >> T && T)
+    {
+        while (cin >> tmp && tmp)
+        {
+            stack<int> s;
+            queue<int> q;
+            q.push(tmp);
+            for (int i = 1; i < T; ++i) cin >> tmp, q.push(tmp);
+            for (int i = 1; i <= T; ++i)
+            {
+                s.push(i);
+                while (!s.empty() && s.top() == q.front()) s.pop(), q.pop();
+            }
+            cout << (s.empty() ? "Yes\n" : "No\n");
+        }
+        cout << '\n';
+    }
 }

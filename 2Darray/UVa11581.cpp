@@ -1,8 +1,9 @@
-#include "stdc++.h"
+#include "../stdc++.h"
+#include <cstdio>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +41,59 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+int tc; long ct;
+array<array<int, 3>, 3> g, fg;
+
+void transform()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            int sum = 0;
+            //up down
+            if (i - 1 >= 0) sum += g[i - 1][j];
+            if (i + 1 <= 2) sum += g[i + 1][j];
+
+            //left right
+            if (j - 1 >= 0) sum += g[i][j - 1];
+            if (j + 1 <= 2) sum += g[i][j + 1];
+
+            fg[i][j] = sum % 2;
+        }
+    }
+}
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
+    cin >> tc;
+    while (tc--)
+    {
+        ct = 0;
+
+        string line;
+        getline(cin, line);
+
+        for (int i = 0; i < 3; i++)
+        {
+            string line;
+            cin >> line;
+            for (int j = 0; j < 3; j++)
+            {
+                g[i][j] = line[j] - '0';
+            }
+        }
+
+        while (1)
+        {
+            transform();
+            if (fg == g) break;
+            ct++;
+            g = fg;
+        }
+        cout << ct  - 1 << '\n';
+    }
 }

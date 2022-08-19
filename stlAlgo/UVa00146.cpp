@@ -1,8 +1,9 @@
-#include "stdc++.h"
+#include "../stdc++.h"
+#include <cstdio>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +41,20 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
-
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
+    string line;
+    while (cin >> line, line != "#")
+    {
+        string ori = line;
+        if (next_permutation(line.begin(), line.end()))
+        {
+             cout << line << '\n';
+             continue;
+        }
+        cout << "No Successor\n";
+    }
 }

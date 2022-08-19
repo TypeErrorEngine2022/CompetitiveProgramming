@@ -1,8 +1,9 @@
 #include "stdc++.h"
+#include <cstdio>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +41,15 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+int N, n, k;
 
 int main()
 {
-
+    scanf("%d", &N);
+    while (N--)
+    {
+        scanf("%d %d", &n, &k);
+        //formula of generating k-th grey code(the leftmost decimal integer)
+        cout <<  (k ^ (k >> 1)) << "\n";
+    }
 }

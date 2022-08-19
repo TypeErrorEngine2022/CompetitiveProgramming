@@ -2,6 +2,21 @@
     "files.associations": {
         "cmath": "cpp",
         "regex": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "cstdio": "cpp",
+        "cstring": "cpp",
+        "array": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "vector": "cpp",
+        "iosfwd": "cpp",
+        "complex": "cpp",
+        "valarray": "cpp",
+        "set": "cpp",
+        "random": "cpp",
+        "algorithm": "cpp",
+        "string": "cpp",
+        "filesystem": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

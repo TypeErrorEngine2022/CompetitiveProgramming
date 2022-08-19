@@ -1,8 +1,9 @@
-#include "stdc++.h"
+#include "../stdc++.h"
+#include <cstdio>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +41,39 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+bitset<3001> bs;
+
+int N;
 
 int main()
 {
-
+    while(scanf("%d", &N) != EOF)
+    {
+        if (N == 1)
+        {
+            printf("Jolly\n");
+            int tp; scanf("%d", &tp);
+            continue;
+        }
+        bool no = false;
+        int prev, next;
+        scanf("%d", &prev);
+        for (int i = 0; i < N - 1; i++)
+        {
+            scanf("%d", &next);
+            bs.set(abs(next - prev));
+            prev = next;
+        }
+        for (int i = 1; i < N; i++)
+        {
+            if (!bs.test(i))
+            {
+                printf("Not jolly\n");
+                no = true;
+                break;
+            }
+        }
+        if (!no) printf("Jolly\n");
+        bs.reset();
+    }
 }

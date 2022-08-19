@@ -1,8 +1,9 @@
-#include "stdc++.h"
+#include "../stdc++.h"
+#include <cstdio>
+#include <cmath>
+#include <cstring>
 
 using namespace std;
-
-#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 
 //shortcuts for "common" data types in contests
 typedef long long                       ll;
@@ -40,8 +41,40 @@ typedef std::map<std::string, int> msi;
 //Accurate Math constant
 double PI (2 * acos(0.0));
 
+int tc, paid, line; double sum;
+array<double, 256> ascii;
+char text[10002];
 
 int main()
-{
-
+{   
+    scanf("%d", &tc);
+    //printf("tc is %d", tc);
+    while (tc--)
+    {
+        sum = 0.0;
+        ascii.fill(0.0);
+        scanf("%d", &paid);
+        //printf("paid is %d", paid);
+        while (paid--)
+        {
+            char ch; double val;
+            scanf(" %c %lf", &ch, &val); //the beginning space skip the newline character
+            //printf("%c: %d %.2lf\n", ch, ch, val);
+            ascii[ch] = val / 100.0; //val are in cents
+        }
+        scanf("%d", &line);
+        //printf("%d line\n", line);
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // remove the \n after the line number, preventing getline to get it
+        while (line--)
+        {
+            cin.getline(text, 10000);
+            //cout << "\nfirst character is " << text[0] << '\n';
+            for (int i = 0; text[i] != '\0'; i++)
+            {
+                sum += ascii[text[i]];
+                //cout << text[i];
+            }
+        }
+        printf("%.2lf$\n", sum);
+    }
 }
