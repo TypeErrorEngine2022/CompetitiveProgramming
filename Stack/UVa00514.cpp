@@ -1,3 +1,7 @@
+//From online github
+//All rights reserved for author (not me)
+
+
 #include "../stdc++.h"
 
 using namespace std;
